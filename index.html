@@ -153,11 +153,26 @@
             font-size: 1.1rem;
             line-height: 1.5;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .speaker {
             font-weight: bold;
             color: #4A6FA5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .translation {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 2px solid #e0e0e0;
+            margin-top: 5px;
         }
 
         /* Игра 1: Собери диалог */
@@ -171,22 +186,54 @@
             border-radius: 10px;
         }
 
+        .mobile-sort-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .mobile-sort-btn {
+            padding: 12px 20px;
+            background-color: #4A6FA5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-sort-btn:hover {
+            background-color: #3a5a8c;
+        }
+
+        .mobile-sort-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
         .sortable-container {
             margin: 30px 0;
         }
 
         .sortable-item {
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
             background-color: white;
             border: 2px solid #dee2e6;
             border-radius: 10px;
-            cursor: move;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 15px;
+            cursor: pointer;
+            user-select: none;
         }
 
         .sortable-item:hover {
@@ -194,27 +241,31 @@
             transform: translateX(5px);
         }
 
-        .sortable-item.dragging {
-            opacity: 0.5;
-            background-color: #f8f9fa;
-        }
-
-        .handle {
-            color: #6B8CBC;
-            font-size: 1.3rem;
-            cursor: move;
+        .sortable-item.selected {
+            border-color: #4A6FA5;
+            background-color: #f0f7ff;
+            transform: scale(1.02);
         }
 
         .number {
             background-color: #4A6FA5;
             color: white;
-            width: 30px;
-            height: 30px;
+            min-width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .item-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .sort-buttons {
@@ -222,6 +273,7 @@
             justify-content: center;
             gap: 20px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         /* Игра 2: Кто это сказал? */
@@ -233,6 +285,23 @@
             background-color: #f0f7ff;
             border-radius: 15px;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .basque-text {
+            font-weight: 600;
+            color: #2c5282;
+        }
+
+        .russian-translation {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
         }
 
         .speaker-options {
@@ -254,6 +323,10 @@
             transition: all 0.3s ease;
             min-width: 200px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
 
         .speaker-option:hover {
@@ -273,6 +346,10 @@
             color: #721c24;
         }
 
+        .speaker-icon {
+            font-size: 1.8rem;
+        }
+
         /* Игра 3: Заполни пропуск */
         .gap-question {
             font-size: 1.4rem;
@@ -282,6 +359,26 @@
             background-color: #f8f9fa;
             border-radius: 15px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .gap-sentence {
+            font-size: 1.5rem;
+            color: #2c5282;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .gap-translation {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            border-left: 4px solid #4A6FA5;
         }
 
         .gap {
@@ -289,9 +386,10 @@
             width: 150px;
             border-bottom: 3px dashed #4A6FA5;
             margin: 0 10px;
-            padding: 5px 0;
+            padding: 8px 0;
             font-weight: bold;
             color: #4A6FA5;
+            text-align: center;
         }
 
         .gap-options {
@@ -509,30 +607,50 @@
                 padding: 20px;
             }
             
-            .sort-buttons {
+            .sort-buttons, .mobile-sort-controls {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .btn {
+            .btn, .mobile-sort-btn {
                 width: 100%;
                 max-width: 300px;
+            }
+            
+            .dialogue-line {
+                padding: 15px;
+            }
+            
+            .speaker-question {
+                padding: 20px;
+                font-size: 1.3rem;
+            }
+            
+            .results-score {
+                font-size: 2.5rem;
             }
         }
 
         @media (max-width: 480px) {
             .dialogue-line {
                 font-size: 1rem;
-                padding: 10px 15px;
             }
             
             .speaker-question {
                 font-size: 1.2rem;
-                padding: 20px;
+                padding: 15px;
             }
             
-            .results-score {
-                font-size: 2.5rem;
+            .gap-sentence {
+                font-size: 1.3rem;
+            }
+            
+            .gap {
+                width: 120px;
+            }
+            
+            .sortable-item {
+                padding: 12px 15px;
             }
         }
     </style>
@@ -590,7 +708,7 @@
             <section id="sort" class="game-section">
                 <div class="section-header">
                     <h2><i class="fas fa-sort-amount-down"></i> Собери диалог</h2>
-                    <p>Расставьте реплики диалога в правильном порядке. Используйте drag-and-drop или кнопки</p>
+                    <p>Расставьте реплики диалога в правильном порядке. Используйте кнопки для перемещения</p>
                 </div>
                 
                 <div class="progress-container">
@@ -598,7 +716,16 @@
                 </div>
                 
                 <div class="sort-instructions">
-                    <i class="fas fa-arrows-alt-v"></i> Перетащите реплики в правильном порядке или используйте кнопки
+                    <i class="fas fa-mobile-alt"></i> Нажмите на реплику, чтобы выбрать её, затем используйте кнопки для перемещения
+                </div>
+                
+                <div class="mobile-sort-controls">
+                    <button class="mobile-sort-btn" id="move-up-btn" disabled>
+                        <i class="fas fa-arrow-up"></i> Поднять
+                    </button>
+                    <button class="mobile-sort-btn" id="move-down-btn" disabled>
+                        <i class="fas fa-arrow-down"></i> Опустить
+                    </button>
                 </div>
                 
                 <div class="sortable-container" id="sortable-container">
@@ -637,10 +764,14 @@
                 
                 <div class="speaker-options">
                     <div class="speaker-option" data-speaker="maite">
-                        <i class="fas fa-female"></i> Maite
+                        <i class="fas fa-female speaker-icon"></i>
+                        <div>Maite</div>
+                        <div style="font-size: 1rem; font-weight: normal;">(девочка)</div>
                     </div>
                     <div class="speaker-option" data-speaker="seller">
-                        <i class="fas fa-store"></i> Salzailea (продавец)
+                        <i class="fas fa-store speaker-icon"></i>
+                        <div>Salzailea</div>
+                        <div style="font-size: 1rem; font-weight: normal;">(продавец)</div>
                     </div>
                 </div>
                 
@@ -706,27 +837,80 @@
     </div>
 
     <script>
-        // Basque dialogue data
+        // Basque dialogue data with Russian translations
         const dialogue = [
-            { speaker: "Maite", text: "Kaixo! Zer moduz?" },
-            { speaker: "Salzailea", text: "Ongi, eskerrik asko. Eta zu?" },
-            { speaker: "Maite", text: "Ni ere ongi. Tomate bat nahi nuke." },
-            { speaker: "Salzailea", text: "Zenbat? Kilogramo bat?" },
-            { speaker: "Maite", text: "Bai, kilogramo bat, mesedez." },
-            { speaker: "Salzailea", text: "Hona hemen. Beste zerbait?" },
-            { speaker: "Maite", text: "Bai, patatak ere nahi ditut." },
-            { speaker: "Salzailea", text: "Zenbat patata?" },
-            { speaker: "Maite", text: "Bi kilo, mesedez." },
-            { speaker: "Salzailea", text: "Hau da guztira: zazpi euro." },
-            { speaker: "Maite", text: "Hona hemen dirua. Milesker!" },
-            { speaker: "Salzailea", text: "Ez horregatik. Agur!" },
-            { speaker: "Maite", text: "Agur, egun on!" }
+            { 
+                speaker: "Maite", 
+                text: "Kaixo! Zer moduz?",
+                translation: "Привет! Как дела?"
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Ongi, eskerrik asko. Eta zu?",
+                translation: "Хорошо, спасибо. А ты?"
+            },
+            { 
+                speaker: "Maite", 
+                text: "Ni ere ongi. Tomate bat nahi nuke.",
+                translation: "Я тоже хорошо. Я бы хотела один помидор."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Zenbat? Kilogramo bat?",
+                translation: "Сколько? Один килограмм?"
+            },
+            { 
+                speaker: "Maite", 
+                text: "Bai, kilogramo bat, mesedez.",
+                translation: "Да, один килограмм, пожалуйста."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Hona hemen. Beste zerbait?",
+                translation: "Вот, пожалуйста. Что-нибудь ещё?"
+            },
+            { 
+                speaker: "Maite", 
+                text: "Bai, patatak ere nahi ditut.",
+                translation: "Да, я также хочу картофель."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Zenbat patata?",
+                translation: "Сколько картофеля?"
+            },
+            { 
+                speaker: "Maite", 
+                text: "Bi kilo, mesedez.",
+                translation: "Два килограмма, пожалуйста."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Hau da guztira: zazpi euro.",
+                translation: "Это всего: семь евро."
+            },
+            { 
+                speaker: "Maite", 
+                text: "Hona hemen dirua. Milesker!",
+                translation: "Вот деньги. Спасибо!"
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Ez horregatik. Agur!",
+                translation: "Не за что. Пока!"
+            },
+            { 
+                speaker: "Maite", 
+                text: "Agur, egun on!",
+                translation: "Пока, хорошего дня!"
+            }
         ];
 
         // Game state
         const gameState = {
             currentMode: 'dialogue',
             sortAttempts: 0,
+            sortSelectedIndex: -1,
             speakerQuestions: [],
             currentSpeakerQuestion: 0,
             speakerScore: 0,
@@ -742,6 +926,8 @@
         const gameSections = document.querySelectorAll('.game-section');
         const dialogueContent = document.getElementById('dialogue-content');
         const sortableContainer = document.getElementById('sortable-container');
+        const moveUpBtn = document.getElementById('move-up-btn');
+        const moveDownBtn = document.getElementById('move-down-btn');
         const checkOrderBtn = document.getElementById('check-order-btn');
         const showHintBtn = document.getElementById('show-hint-btn');
         const nextSortBtn = document.getElementById('next-sort-btn');
@@ -801,6 +987,8 @@
             });
             
             // Sort game buttons
+            moveUpBtn.addEventListener('click', moveItemUp);
+            moveDownBtn.addEventListener('click', moveItemDown);
             checkOrderBtn.addEventListener('click', checkSortOrder);
             showHintBtn.addEventListener('click', showHint);
             nextSortBtn.addEventListener('click', nextSortQuestion);
@@ -856,7 +1044,12 @@
                 const lineElement = document.createElement('div');
                 lineElement.className = 'dialogue-line';
                 lineElement.innerHTML = `
-                    <span class="speaker">${line.speaker}:</span> ${line.text}
+                    <div class="speaker">
+                        <i class="fas ${line.speaker === 'Maite' ? 'fa-female' : 'fa-store'}"></i>
+                        ${line.speaker}:
+                    </div>
+                    <div><strong>${line.text}</strong></div>
+                    <div class="translation">${line.translation}</div>
                 `;
                 dialogueContent.appendChild(lineElement);
             });
@@ -866,9 +1059,12 @@
         function initSortGame() {
             // Reset state
             gameState.sortAttempts = 0;
+            gameState.sortSelectedIndex = -1;
             sortProgress.textContent = 'Попытка 1 из 3';
             sortFeedback.style.display = 'none';
             nextSortBtn.style.display = 'none';
+            moveUpBtn.disabled = true;
+            moveDownBtn.disabled = true;
             
             // Create shuffled lines
             const shuffledLines = [...dialogue].sort(() => Math.random() - 0.5);
@@ -881,20 +1077,18 @@
                 const item = document.createElement('div');
                 item.className = 'sortable-item';
                 item.setAttribute('data-index', index);
-                item.setAttribute('draggable', 'true');
+                item.setAttribute('data-original-index', dialogue.findIndex(l => 
+                    l.text === line.text && l.speaker === line.speaker));
                 item.innerHTML = `
-                    <div class="handle"><i class="fas fa-arrows-alt-v"></i></div>
                     <div class="number">${index + 1}</div>
-                    <div>
-                        <span class="speaker">${line.speaker}:</span> ${line.text}
+                    <div class="item-content">
+                        <div><strong>${line.speaker}:</strong> ${line.text}</div>
+                        <div class="translation" style="font-size: 0.9rem;">${line.translation}</div>
                     </div>
                 `;
                 
-                // Add drag events
-                item.addEventListener('dragstart', handleDragStart);
-                item.addEventListener('dragover', handleDragOver);
-                item.addEventListener('drop', handleDrop);
-                item.addEventListener('dragend', handleDragEnd);
+                // Add click event for selection
+                item.addEventListener('click', () => selectSortItem(index));
                 
                 sortableContainer.appendChild(item);
             });
@@ -904,39 +1098,63 @@
             showHintBtn.disabled = false;
         }
 
-        // Drag and drop handlers for sort game
-        let draggedItem = null;
-
-        function handleDragStart(e) {
-            draggedItem = this;
-            setTimeout(() => this.classList.add('dragging'), 0);
+        // Select item in sort game
+        function selectSortItem(index) {
+            // Remove selection from all items
+            const items = sortableContainer.querySelectorAll('.sortable-item');
+            items.forEach(item => item.classList.remove('selected'));
+            
+            // Select clicked item
+            items[index].classList.add('selected');
+            gameState.sortSelectedIndex = index;
+            
+            // Enable/disable move buttons
+            moveUpBtn.disabled = index === 0;
+            moveDownBtn.disabled = index === items.length - 1;
         }
 
-        function handleDragOver(e) {
-            e.preventDefault();
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            if (draggedItem !== this) {
-                const allItems = [...sortableContainer.querySelectorAll('.sortable-item')];
-                const draggedIndex = allItems.indexOf(draggedItem);
-                const targetIndex = allItems.indexOf(this);
+        // Move selected item up
+        function moveItemUp() {
+            if (gameState.sortSelectedIndex > 0) {
+                const items = sortableContainer.querySelectorAll('.sortable-item');
+                const selectedItem = items[gameState.sortSelectedIndex];
+                const prevItem = items[gameState.sortSelectedIndex - 1];
                 
-                if (draggedIndex < targetIndex) {
-                    this.parentNode.insertBefore(draggedItem, this.nextSibling);
-                } else {
-                    this.parentNode.insertBefore(draggedItem, this);
-                }
+                // Swap items
+                sortableContainer.insertBefore(selectedItem, prevItem);
                 
-                // Update numbers
+                // Update selected index
+                gameState.sortSelectedIndex--;
+                
+                // Update numbers and button states
                 updateSortNumbers();
+                moveUpBtn.disabled = gameState.sortSelectedIndex === 0;
+                moveDownBtn.disabled = gameState.sortSelectedIndex === items.length - 1;
             }
         }
 
-        function handleDragEnd() {
-            this.classList.remove('dragging');
-            draggedItem = null;
+        // Move selected item down
+        function moveItemDown() {
+            const items = sortableContainer.querySelectorAll('.sortable-item');
+            if (gameState.sortSelectedIndex < items.length - 1) {
+                const selectedItem = items[gameState.sortSelectedIndex];
+                const nextItem = items[gameState.sortSelectedIndex + 1];
+                
+                // Swap items
+                if (nextItem.nextSibling) {
+                    sortableContainer.insertBefore(selectedItem, nextItem.nextSibling);
+                } else {
+                    sortableContainer.appendChild(selectedItem);
+                }
+                
+                // Update selected index
+                gameState.sortSelectedIndex++;
+                
+                // Update numbers and button states
+                updateSortNumbers();
+                moveUpBtn.disabled = gameState.sortSelectedIndex === 0;
+                moveDownBtn.disabled = gameState.sortSelectedIndex === items.length - 1;
+            }
         }
 
         // Update numbers in sort game
@@ -956,10 +1174,9 @@
             let correctCount = 0;
             
             items.forEach((item, index) => {
-                const itemText = item.querySelector('div:nth-child(3)').textContent.trim();
-                const correctText = `${dialogue[index].speaker}: ${dialogue[index].text}`;
+                const originalIndex = parseInt(item.getAttribute('data-original-index'));
                 
-                if (itemText === correctText) {
+                if (originalIndex === index) {
                     correctCount++;
                 }
             });
@@ -972,6 +1189,8 @@
                 sortFeedback.className = 'feedback-message feedback-correct';
                 checkOrderBtn.disabled = true;
                 showHintBtn.disabled = true;
+                moveUpBtn.disabled = true;
+                moveDownBtn.disabled = true;
                 nextSortBtn.style.display = 'inline-flex';
                 gameState.exercisesCompleted++;
             } else if (gameState.sortAttempts >= 3) {
@@ -980,6 +1199,8 @@
                 showCorrectOrder();
                 checkOrderBtn.disabled = true;
                 showHintBtn.disabled = true;
+                moveUpBtn.disabled = true;
+                moveDownBtn.disabled = true;
                 nextSortBtn.style.display = 'inline-flex';
                 gameState.exercisesCompleted++;
             } else {
@@ -999,12 +1220,11 @@
             dialogue.forEach((line, index) => {
                 const item = document.createElement('div');
                 item.className = 'sortable-item';
-                item.setAttribute('data-index', index);
                 item.innerHTML = `
-                    <div class="handle"><i class="fas fa-check"></i></div>
                     <div class="number" style="background-color: #28a745;">${index + 1}</div>
-                    <div>
-                        <span class="speaker">${line.speaker}:</span> ${line.text}
+                    <div class="item-content">
+                        <div><strong>${line.speaker}:</strong> ${line.text}</div>
+                        <div class="translation" style="font-size: 0.9rem;">${line.translation}</div>
                     </div>
                 `;
                 sortableContainer.appendChild(item);
@@ -1042,6 +1262,7 @@
             selectedLines.forEach(line => {
                 gameState.speakerQuestions.push({
                     text: line.text,
+                    translation: line.translation,
                     correctSpeaker: line.speaker.toLowerCase(),
                     speakerName: line.speaker
                 });
@@ -1064,7 +1285,11 @@
         function loadSpeakerQuestion(index) {
             if (index < gameState.speakerQuestions.length) {
                 const question = gameState.speakerQuestions[index];
-                speakerQuestion.textContent = `"${question.text}"`;
+                speakerQuestion.innerHTML = `
+                    <div class="basque-text">"${question.text}"</div>
+                    <div class="russian-translation">${question.translation}</div>
+                    <div style="font-size: 1.2rem; color: #4A6FA5; margin-top: 10px;">Кто это сказал?</div>
+                `;
                 
                 // Reset options
                 speakerOptions.forEach(option => {
@@ -1137,7 +1362,17 @@
         // Show speaker game results
         function showSpeakerResults() {
             const percentage = Math.round((gameState.speakerScore / gameState.speakerQuestions.length) * 100);
-            speakerQuestion.innerHTML = `<i class="fas fa-chart-bar"></i> Результат: ${gameState.speakerScore} из ${gameState.speakerQuestions.length} (${percentage}%)`;
+            speakerQuestion.innerHTML = `
+                <div style="font-size: 1.8rem; color: #4A6FA5;">
+                    <i class="fas fa-chart-bar"></i> Результат
+                </div>
+                <div style="font-size: 2rem; font-weight: bold; color: #28a745;">
+                    ${gameState.speakerScore} из ${gameState.speakerQuestions.length}
+                </div>
+                <div style="font-size: 1.5rem; color: #666;">
+                    (${percentage}%)
+                </div>
+            `;
             
             let message = '';
             if (percentage === 100) {
@@ -1175,18 +1410,68 @@
             gameState.currentGapQuestion = 0;
             gameState.gapScore = 0;
             
-            // Create 5 gap questions
+            // Gap sentences with translations
             const sentences = [
-                { text: "Kaixo! ___ moduz?", correct: "Zer", options: ["Zer", "Zenbat", "Non"] },
-                { text: "Ongi, eskerrik asko. ___ zu?", correct: "Eta", options: ["Eta", "Baina", "Edo"] },
-                { text: "Tomate bat ___ nuke.", correct: "nahi", options: ["nahi", "eman", "ekarri"] },
-                { text: "Zenbat? Kilogramo ___?", correct: "bat", options: ["bat", "bi", "hiru"] },
-                { text: "Bai, kilogramo bat, ___", correct: "mesedez", options: ["mesedez", "barkatu", "agur"] },
-                { text: "Hona hemen. ___ zerbait?", correct: "Beste", options: ["Beste", "Zertarako", "Noiz"] },
-                { text: "Bai, patatak ___ nahi ditut.", correct: "ere", options: ["ere", "bakarrik", "oso"] },
-                { text: "Zenbat ___?", correct: "patata", options: ["patata", "tomate", "fruta"] },
-                { text: "___ kilo, mesedez.", correct: "Bi", options: ["Bi", "Bat", "Lau"] },
-                { text: "Hau da guztira: ___ euro.", correct: "zazpi", options: ["zazpi", "sei", "zortzi"] }
+                { 
+                    text: "Kaixo! ___ moduz?", 
+                    correct: "Zer", 
+                    options: ["Zer", "Zenbat", "Non"],
+                    translation: "Привет! ___ дела?"
+                },
+                { 
+                    text: "Ongi, eskerrik asko. ___ zu?", 
+                    correct: "Eta", 
+                    options: ["Eta", "Baina", "Edo"],
+                    translation: "Хорошо, спасибо. ___ ты?"
+                },
+                { 
+                    text: "Tomate bat ___ nuke.", 
+                    correct: "nahi", 
+                    options: ["nahi", "eman", "ekarri"],
+                    translation: "Я бы ___ один помидор."
+                },
+                { 
+                    text: "Zenbat? Kilogramo ___?", 
+                    correct: "bat", 
+                    options: ["bat", "bi", "hiru"],
+                    translation: "Сколько? Один ___?"
+                },
+                { 
+                    text: "Bai, kilogramo bat, ___", 
+                    correct: "mesedez", 
+                    options: ["mesedez", "barkatu", "agur"],
+                    translation: "Да, один килограмм, ___"
+                },
+                { 
+                    text: "Hona hemen. ___ zerbait?", 
+                    correct: "Beste", 
+                    options: ["Beste", "Zertarako", "Noiz"],
+                    translation: "Вот, пожалуйста. ___ что-нибудь?"
+                },
+                { 
+                    text: "Bai, patatak ___ nahi ditut.", 
+                    correct: "ere", 
+                    options: ["ere", "bakarrik", "oso"],
+                    translation: "Да, я ___ хочу картофель."
+                },
+                { 
+                    text: "Zenbat ___?", 
+                    correct: "patata", 
+                    options: ["patata", "tomate", "fruta"],
+                    translation: "Сколько ___?"
+                },
+                { 
+                    text: "___ kilo, mesedez.", 
+                    correct: "Bi", 
+                    options: ["Bi", "Bat", "Lau"],
+                    translation: "___ килограмма, пожалуйста."
+                },
+                { 
+                    text: "Hau da guztira: ___ euro.", 
+                    correct: "zazpi", 
+                    options: ["zazpi", "sei", "zortzi"],
+                    translation: "Это всего: ___ евро."
+                }
             ];
             
             // Select 5 random sentences
@@ -1199,6 +1484,7 @@
                 
                 gameState.gapQuestions.push({
                     text: sentence.text,
+                    translation: sentence.translation,
                     correct: sentence.correct,
                     options: shuffledOptions
                 });
@@ -1218,7 +1504,11 @@
                 
                 // Display question with gap
                 const questionText = question.text.replace('___', '<span class="gap">______</span>');
-                gapQuestion.innerHTML = questionText;
+                gapQuestion.innerHTML = `
+                    <div class="gap-sentence">${questionText}</div>
+                    <div class="gap-translation">${question.translation}</div>
+                    <div style="font-size: 1.2rem; color: #4A6FA5; margin-top: 10px;">Выберите правильное слово:</div>
+                `;
                 
                 // Clear options
                 gapOptionsContainer.innerHTML = '';
@@ -1286,7 +1576,17 @@
         function showGapResults() {
             const percentage = Math.round((gameState.gapScore / gameState.gapQuestions.length) * 100);
             
-            gapQuestion.innerHTML = `<i class="fas fa-chart-line"></i> Результат: ${gameState.gapScore} из ${gameState.gapQuestions.length} (${percentage}%)`;
+            gapQuestion.innerHTML = `
+                <div style="font-size: 1.8rem; color: #4A6FA5;">
+                    <i class="fas fa-chart-line"></i> Результат
+                </div>
+                <div style="font-size: 2rem; font-weight: bold; color: #28a745;">
+                    ${gameState.gapScore} из ${gameState.gapQuestions.length}
+                </div>
+                <div style="font-size: 1.5rem; color: #666;">
+                    (${percentage}%)
+                </div>
+            `;
             
             let message = '';
             if (percentage === 100) {
@@ -1349,6 +1649,7 @@
         function restartAllGames() {
             // Reset game state
             gameState.sortAttempts = 0;
+            gameState.sortSelectedIndex = -1;
             gameState.currentSpeakerQuestion = 0;
             gameState.speakerScore = 0;
             gameState.currentGapQuestion = 0;
