@@ -837,72 +837,97 @@
     </div>
 
     <script>
-        // Basque dialogue data with Russian translations
+        // Basque dialogue data with Russian translations - CORRECTED VERSION
         const dialogue = [
             { 
                 speaker: "Maite", 
-                text: "Kaixo! Zer moduz?",
-                translation: "Привет! Как дела?"
+                text: "Egun hon!",
+                translation: "Добрый день!"
             },
             { 
                 speaker: "Salzailea", 
-                text: "Ongi, eskerrik asko. Eta zu?",
-                translation: "Хорошо, спасибо. А ты?"
+                text: "Egun hon! Zer behar düzü? Lagüntzen ahal zaitüt!",
+                translation: "Добрый день! Что вам нужно? Могу я вам помочь!"
             },
             { 
                 speaker: "Maite", 
-                text: "Ni ere ongi. Tomate bat nahi nuke.",
-                translation: "Я тоже хорошо. Я бы хотела один помидор."
+                text: "Baratzekiak behar dütüt, otoi.",
+                translation: "Мне нужны овощи, пожалуйста."
             },
             { 
                 speaker: "Salzailea", 
-                text: "Zenbat? Kilogramo bat?",
-                translation: "Сколько? Один килограмм?"
+                text: "Soegin, baratzekiak heben dütügi. Zer nahi düzü?",
+                translation: "Конечно, овощи здесь есть. Что вы хотите?"
             },
             { 
                 speaker: "Maite", 
-                text: "Bai, kilogramo bat, mesedez.",
-                translation: "Да, один килограмм, пожалуйста."
+                text: "3 tipula, azalili 1 eta 5 porriü nahi dütüt, otoi.",
+                translation: "Я хочу 3 луковицы, 1 цветную капусту и 5 пореев, пожалуйста."
             },
             { 
                 speaker: "Salzailea", 
-                text: "Hona hemen. Beste zerbait?",
-                translation: "Вот, пожалуйста. Что-нибудь ещё?"
+                text: "Pastanagreik nahi düzü?",
+                translation: "Морковку хотите?"
             },
             { 
                 speaker: "Maite", 
-                text: "Bai, patatak ere nahi ditut.",
-                translation: "Да, я также хочу картофель."
+                text: "Zonbat balio düe?",
+                translation: "Сколько это стоит?"
             },
             { 
                 speaker: "Salzailea", 
-                text: "Zenbat patata?",
-                translation: "Сколько картофеля?"
+                text: "3 pastanagrek 4 euro balio düe.",
+                translation: "3 морковки стоят 4 евро."
             },
             { 
                 speaker: "Maite", 
-                text: "Bi kilo, mesedez.",
-                translation: "Два килограмма, пожалуйста."
+                text: "Kariöegi da! Ez eskerrik hanitx.",
+                translation: "Это слишком дорого! Нет, спасибо."
             },
             { 
                 speaker: "Salzailea", 
-                text: "Hau da guztira: zazpi euro.",
-                translation: "Это всего: семь евро."
+                text: "Beste zerbait behar düzü?",
+                translation: "Ещё что-нибудь нужно?"
             },
             { 
                 speaker: "Maite", 
-                text: "Hona hemen dirua. Milesker!",
-                translation: "Вот деньги. Спасибо!"
+                text: "Bai, lürsagarrak behar dütüt zopa egiteko!",
+                translation: "Да, мне нужны яблоки для супа!"
             },
             { 
                 speaker: "Salzailea", 
-                text: "Ez horregatik. Agur!",
-                translation: "Не за что. Пока!"
+                text: "Zonbat nahi dütüzü?",
+                translation: "Сколько вы хотите?"
             },
             { 
                 speaker: "Maite", 
-                text: "Agur, egun on!",
-                translation: "Пока, хорошего дня!"
+                text: "10 bat lürsagar nahi dütüt, otoi.",
+                translation: "Я хочу 10 яблок, пожалуйста."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Orotara 27 euro otoi.",
+                translation: "Всего 27 евро, пожалуйста."
+            },
+            { 
+                speaker: "Maite", 
+                text: "Orotara? Ez da merke! Tori 30 euro.",
+                translation: "Всего? Это не дёшево! Вот 30 евро."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Eta tori 3 euro.",
+                translation: "И вот 3 евро сдачи."
+            },
+            { 
+                speaker: "Maite", 
+                text: "Eskerrik hanitx, adio.",
+                translation: "Большое спасибо, до свидания."
+            },
+            { 
+                speaker: "Salzailea", 
+                text: "Izan ontsa, adio.",
+                translation: "Будьте здоровы, до свидания."
             }
         ];
 
@@ -1234,7 +1259,7 @@
         // Show hint for sort game
         function showHint() {
             sortFeedback.style.display = 'block';
-            sortFeedback.textContent = 'Первая реплика: "Kaixo! Zer moduz?" говорит Maite. Последняя: "Agur, egun on!" говорит Maite.';
+            sortFeedback.textContent = 'Первая реплика: "Egun hon!" говорит Maite. Последняя: "Izan ontsa, adio." говорит продавец.';
             sortFeedback.className = 'feedback-message feedback-info';
             
             // Hide after 5 seconds
@@ -1410,67 +1435,73 @@
             gameState.currentGapQuestion = 0;
             gameState.gapScore = 0;
             
-            // Gap sentences with translations
+            // Gap sentences with translations - based on the CORRECTED dialogue
             const sentences = [
                 { 
-                    text: "Kaixo! ___ moduz?", 
-                    correct: "Zer", 
-                    options: ["Zer", "Zenbat", "Non"],
-                    translation: "Привет! ___ дела?"
+                    text: "Egun ___!", 
+                    correct: "hon", 
+                    options: ["hon", "on", "ondo"],
+                    translation: "Добрый ___!"
                 },
                 { 
-                    text: "Ongi, eskerrik asko. ___ zu?", 
-                    correct: "Eta", 
-                    options: ["Eta", "Baina", "Edo"],
-                    translation: "Хорошо, спасибо. ___ ты?"
+                    text: "Zer behar ___?", 
+                    correct: "düzü", 
+                    options: ["düzü", "dütüt", "düe"],
+                    translation: "Что вам ___?"
                 },
                 { 
-                    text: "Tomate bat ___ nuke.", 
-                    correct: "nahi", 
-                    options: ["nahi", "eman", "ekarri"],
-                    translation: "Я бы ___ один помидор."
+                    text: "Baratzekiak behar ___, otoi.", 
+                    correct: "dütüt", 
+                    options: ["dütüt", "düzü", "düe"],
+                    translation: "Мне нужны овощи, ___."
                 },
                 { 
-                    text: "Zenbat? Kilogramo ___?", 
-                    correct: "bat", 
-                    options: ["bat", "bi", "hiru"],
-                    translation: "Сколько? Один ___?"
+                    text: "3 tipula, azalili 1 ___ 5 porriü nahi dütüt, otoi.", 
+                    correct: "eta", 
+                    options: ["eta", "edo", "bai"],
+                    translation: "Я хочу 3 луковицы, 1 цветную капусту ___ 5 пореев, пожалуйста."
                 },
                 { 
-                    text: "Bai, kilogramo bat, ___", 
-                    correct: "mesedez", 
-                    options: ["mesedez", "barkatu", "agur"],
-                    translation: "Да, один килограмм, ___"
+                    text: "___ balio düe?", 
+                    correct: "Zonbat", 
+                    options: ["Zonbat", "Zenbat", "Nonbat"],
+                    translation: "___ это стоит?"
                 },
                 { 
-                    text: "Hona hemen. ___ zerbait?", 
-                    correct: "Beste", 
-                    options: ["Beste", "Zertarako", "Noiz"],
-                    translation: "Вот, пожалуйста. ___ что-нибудь?"
+                    text: "3 pastanagrek 4 euro ___ düe.", 
+                    correct: "balio", 
+                    options: ["balio", "balioz", "baliatu"],
+                    translation: "3 морковки ___ 4 евро."
                 },
                 { 
-                    text: "Bai, patatak ___ nahi ditut.", 
-                    correct: "ere", 
-                    options: ["ere", "bakarrik", "oso"],
-                    translation: "Да, я ___ хочу картофель."
+                    text: "Kariöegi da! Ez eskerrik ___", 
+                    correct: "hanitx", 
+                    options: ["hanitx", "asko", "polita"],
+                    translation: "Это слишком дорого! Нет, спасибо ___"
                 },
                 { 
-                    text: "Zenbat ___?", 
-                    correct: "patata", 
-                    options: ["patata", "tomate", "fruta"],
-                    translation: "Сколько ___?"
+                    text: "Beste zerbait ___ düzü?", 
+                    correct: "behar", 
+                    options: ["behar", "nahi", "izan"],
+                    translation: "Ещё что-нибудь ___ нужно?"
                 },
                 { 
-                    text: "___ kilo, mesedez.", 
-                    correct: "Bi", 
-                    options: ["Bi", "Bat", "Lau"],
-                    translation: "___ килограмма, пожалуйста."
+                    text: "10 bat lürsagar nahi dütüt, ___.", 
+                    correct: "otoi", 
+                    options: ["otoi", "mesedez", "barkatu"],
+                    translation: "Я хочу 10 яблок, ___."
                 },
                 { 
-                    text: "Hau da guztira: ___ euro.", 
-                    correct: "zazpi", 
-                    options: ["zazpi", "sei", "zortzi"],
-                    translation: "Это всего: ___ евро."
+                    text: "Orotara 27 euro ___.", 
+                    correct: "otoi", 
+                    options: ["otoi", "bai", "ez"],
+                    translation: "Всего 27 евро, ___."
+                },
+                { 
+                    text: "Eskerrik hanitx, ___.", 
+                    correct: "adio", 
+                    options: ["adio", "agur", "kaixo"],
+                    translation: "Большое спасибо, ___."
                 }
             ];
             
